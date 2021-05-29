@@ -1,26 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
+[Serializable]
 public class Board
 {
-
-    Snake[] _snakes = { new Snake(36, 5, new Vector2(-0.5f, -4.5f)), new Snake(49, 7, new Vector2(1.5f, -4.5f)),
-                        new Snake(56, 8, new Vector2(2.5f, -4.5f)), new Snake(82, 20, new Vector2(-4.5f, -3.5f)),
-                        new Snake(87, 66, new Vector2(0.5f, 1.5f)), new Snake(95, 38, new Vector2(-2.5f, -1.5f)) };
-
-    Ladder[] _ladders = { new Ladder(35, 5, new Vector2(0.5f, -1.5f)), new Ladder(51, 9, new Vector2(4.5f, 0.5f)),
-                          new Ladder(42, 23, new Vector2(-3.5f, -0.5f)), new Ladder(86, 48, new Vector2(0.5f, 3.5f)),
-                          new Ladder(83, 62, new Vector2(-2.5f, 3.5f)), new Ladder(91, 69, new Vector2(4.5f, 4.5f)) };
+    [SerializeField] private Transform _initialTransform;
+    [SerializeField] private List<Snake> _snakes;
+    [SerializeField] private List<Ladder> _ladders;
 
     Vector2[] _tilePositions = new Vector2[100];
 
-    public Snake[] GetSnakes()
+    public List<Snake> GetSnakes()
     {
         return _snakes;
     }
 
-    public Ladder[]  GetLadders()
+    public List<Ladder>  GetLadders()
     {
         return _ladders;
     }
@@ -34,7 +31,7 @@ public class Board
     {
         bool reverse = false;
 
-        _tilePositions[0] = new Vector2(-4.5f, -4.5f);
+        _tilePositions[0] = new Vector2(_initialTransform.position.x, _initialTransform.position.y);
 
         for (int i = 1; i < 100; i++)
         {

@@ -1,19 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
+[Serializable]
 public class Ladder
 {
-    int _topTile;
-    int _bottomTile;
-    Vector2 _topPos;
+    [SerializeField] private int _topTile;
+    [SerializeField] private int _bottomTile;
 
 
-    public Ladder(int topTile, int bottomTile, Vector2 topPos)
+    public Ladder(int topTile, int bottomTile)
     {
         _topTile = topTile;
         _bottomTile = bottomTile;
-        _topPos = topPos;
     }
 
     public int GetTopTile()
@@ -24,10 +24,5 @@ public class Ladder
     public int GetBottomTile()
     {
         return _bottomTile;
-    }
-
-    public Vector2 GetTopPosition()
-    {
-        return _topPos;
     }
 }
